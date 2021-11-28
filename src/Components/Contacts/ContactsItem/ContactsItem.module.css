@@ -1,0 +1,16 @@
+.contact {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.contact:after {
+  display: block;
+  width: 100%;
+  content: '';
+  position: absolute;
+  border-bottom: 1px solid #dcdcdc;
+  top: 110%;
+  /* left: 110px; */
+}

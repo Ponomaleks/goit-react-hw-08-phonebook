@@ -1,0 +1,13 @@
+.submitBtn {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+  font-size: 14px;
+  transition: 150ms;
+  width: 120px;
+}
+
+.submitBtn:hover,
+.submitBtn:focus {
+  transform: scale(1.05);
+}

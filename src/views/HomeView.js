@@ -1,10 +1,8 @@
-import { NavLink } from 'react-router-dom';
-
 export default function HomeView() {
   return (
-    <nav>
-      <NavLink to="/contacts">Contacts</NavLink>
-      <NavLink to="/register">Registration</NavLink>
-    </nav>
+    <>
+      <h1>This is a phonebook App</h1>
+      <i>You should to log in to use it</i>
+    </>
   );
 }

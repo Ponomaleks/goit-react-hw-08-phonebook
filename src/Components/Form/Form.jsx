@@ -14,7 +14,6 @@ export default function Form() {
   const [addContact, { isLoading: isAdding }] = useAddContactMutation();
   const { data } = useGetContactsQuery();
 
-  console.log(data);
   const handleSubmit = e => {
     e.preventDefault();
     const nameIsPresent = data.find(cont => cont.name.toLowerCase() === name.toLowerCase());

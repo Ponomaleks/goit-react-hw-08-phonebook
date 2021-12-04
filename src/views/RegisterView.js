@@ -33,9 +33,25 @@ export default function RegisterView() {
     <div>
       <h1>Registration</h1>
       <form onSubmit={handleSubmit}>
-        <input label="name" name="name" onChange={handleChange} value={name}></input>
-        <input label="email" name="email" onChange={handleChange} value={email}></input>
-        <input label="password" name="password" onChange={handleChange} value={password}></input>
+        <label>
+          name
+          <input label="name" name="name" onChange={handleChange} value={name} id="name" />
+        </label>
+        <label>
+          email
+          <input label="email" name="email" onChange={handleChange} value={email} id="email" />
+        </label>
+        <label>
+          password
+          <input
+            label="password"
+            name="password"
+            onChange={handleChange}
+            value={password}
+            id="password"
+          />
+        </label>
+
         <button type="submit">Register</button>
       </form>
     </div>

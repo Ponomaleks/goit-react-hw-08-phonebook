@@ -6,13 +6,8 @@ export const phonebookApi = createApi({
     baseUrl: 'https://connections-api.herokuapp.com/contacts',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
-      // const token = localStorage.getItem('persist:auth')
-      console.log(token);
-      // // If we have a token set in state, let's assume that we should be passing it.
-      // if (token) {
+      // можно переписать запросы на axios, т.к. там уже глобаьно сохранен token в axios.defaults.headers.common.Authorization, но я использую RTK Query из предыдущего ДЗ
       headers.set('authorization', `Bearer ${token}`);
-      // }
-
       return headers;
     },
   }),

@@ -1,11 +1,13 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
 import './App.css';
 import AppBar from './Components/Navigation/AppBar';
 import PrivateRoute from './Components/PrivateRoute';
 import PublicRoute from './Components/PublicRoute';
 import { authOperations } from './redux/auth/auth-operations';
+import { getIsFetchingUser } from './redux/auth/auth-selectors';
 
 // import ContactsView from './views/ContactsView';
 // import HomeView from './views/HomeView';
@@ -23,48 +25,51 @@ const RegisterView = lazy(() =>
 
 export default function App() {
   const dispatch = useDispatch();
+  const isFatchingCurrentUser = useSelector(getIsFetchingUser);
 
   useEffect(() => dispatch(authOperations.fetchCurrentUser()), [dispatch]);
 
   return (
-    <>
-      <AppBar />
-      <Suspense fallback={<p>Loading...</p>}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <PublicRoute restricted>
-                <HomeView />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute>
-                <ContactsView />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <PublicRoute restricted>
-                <RegisterView />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <PublicRoute restricted>
-                <LoginView />
-              </PublicRoute>
-            }
-          />
-        </Routes>
-      </Suspense>
-    </>
+    !isFatchingCurrentUser && (
+      <>
+        <AppBar />
+        <Suspense fallback={''}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <PublicRoute restricted>
+                  <HomeView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute>
+                  <ContactsView />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute restricted>
+                  <RegisterView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute restricted>
+                  <LoginView />
+                </PublicRoute>
+              }
+            />
+          </Routes>
+        </Suspense>
+      </>
+    )
   );
 }

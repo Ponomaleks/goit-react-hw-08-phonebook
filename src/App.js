@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router';
 import './App.css';
 import AppBar from './Components/Navigation/AppBar';
 import PrivateRoute from './Components/PrivateRoute';
+import PublicRoute from './Components/PublicRoute';
 import { authOperations } from './redux/auth/auth-operations';
 
 // import ContactsView from './views/ContactsView';
@@ -30,7 +31,14 @@ export default function App() {
       <AppBar />
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
-          <Route path="/" element={<HomeView />} />
+          <Route
+            path="/"
+            element={
+              <PublicRoute restricted>
+                <HomeView />
+              </PublicRoute>
+            }
+          />
           <Route
             path="/contacts"
             element={
@@ -39,11 +47,22 @@ export default function App() {
               </PrivateRoute>
             }
           />
-          {/* <PrivateRoute path="/contacts">
-            <ContactsView />
-          </PrivateRoute> */}
-          <Route path="/register" element={<RegisterView />} />
-          <Route path="/login" element={<LoginView />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute restricted>
+                <RegisterView />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute restricted>
+                <LoginView />
+              </PublicRoute>
+            }
+          />
         </Routes>
       </Suspense>
     </>

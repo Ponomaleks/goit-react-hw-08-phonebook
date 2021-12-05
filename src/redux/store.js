@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { phonebookApi } from './phonebook';
 import authReducer from './auth/auth-slice';
+import logger from 'redux-logger';
 
 const authPersistConfig = {
   key: 'auth',
@@ -31,6 +32,7 @@ const store = configureStore({
       },
     }),
     phonebookApi.middleware,
+    logger,
   ],
   devtools: true,
   // devtools: process.env.NODE_ENV === 'development',

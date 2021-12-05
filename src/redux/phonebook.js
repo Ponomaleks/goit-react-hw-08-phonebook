@@ -13,6 +13,9 @@ export const phonebookApi = createApi({
   }),
 
   tagTypes: ['Contacts'],
+  refetchOnMountOrArgChange: true,
+  refetchOnReconnect: true,
+
   endpoints: builder => ({
     getContacts: builder.query({
       query: () => `/`,

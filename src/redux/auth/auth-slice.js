@@ -4,7 +4,7 @@ import { authOperations } from './auth-operations';
 const initialState = {
   user: { name: null, email: null },
   token: null,
-  isLoggedIn: null,
+  isLoggedIn: false,
 };
 
 const authSlice = createSlice({
@@ -17,10 +17,16 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     [authOperations.logIn.fulfilled](state, action) {
+      console.log(action);
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
+    // [authOperations.logIn.rejected](state, action) {
+    //   state.user = { name: null, email: null };
+    //   state.token = null;
+    //   state.isLoggedIn = false;
+    // },
     [authOperations.logOut.fulfilled](state, action) {
       state.user = { name: null, email: null };
       state.token = null;

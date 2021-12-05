@@ -8,13 +8,17 @@ export default function UserMenu() {
   const dispatch = useDispatch();
   const name = useSelector(getUserName);
   return (
-    <>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
       <img src={defaultAvatar} alt="UserPic" width="32" height="32"></img>
-      <span>Hi, </span>
+      <span style={{ marginLeft: '10px' }}>Hi,&nbsp;</span>
       <span>{name}</span>
-      <button type="button" onClick={() => dispatch(authOperations.logOut())}>
+      <button
+        style={{ marginLeft: '10px' }}
+        type="button"
+        onClick={() => dispatch(authOperations.logOut())}
+      >
         LogOut{' '}
       </button>
-    </>
+    </div>
   );
 }

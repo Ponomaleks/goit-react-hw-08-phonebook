@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/auth/auth-operations';
+import SectionH1 from '../Components/SectionH1';
 
 export default function LoginView() {
   const dispatch = useDispatch();
@@ -26,10 +27,23 @@ export default function LoginView() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input label="email" name="email" onChange={handleChange} value={email}></input>
-      <input label="password" name="password" onChange={handleChange} value={password}></input>
-      <button type="submit">Log in</button>
-    </form>
+    <SectionH1 title="Registration">
+      <form onSubmit={handleSubmit} style={{ padding: '0 20px' }}>
+        <label style={{ textAlign: 'left' }}>
+          email <input label="email" name="email" onChange={handleChange} value={email} />
+        </label>
+        <label style={{ textAlign: 'left' }}>
+          password
+          <input
+            label="password"
+            type="password"
+            name="password"
+            onChange={handleChange}
+            value={password}
+          />
+        </label>
+        <button type="submit">Log in</button>
+      </form>
+    </SectionH1>
   );
 }
